@@ -33,8 +33,9 @@ Interfaz de usuario moderna y responsiva diseñada para empoderar al ciudadano p
 
 ---
 
-📂 Estructura del Proyecto
-Plaintext
+## 📂 Estructura del Proyecto
+
+```text
 src/
  ├── 📂 assets/          # Recursos visuales (Imágenes, SVGs) y estilos globales.
  ├── 📂 components/      # Componentes modulares y reutilizables (Navbar, RadarChart).
