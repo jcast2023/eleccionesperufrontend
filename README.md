@@ -4,7 +4,6 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-
 Interfaz de usuario moderna y responsiva diseñada para empoderar al ciudadano peruano. La plataforma permite interactuar con datos electorales complejos a través de una experiencia intuitiva, facilitando el voto informado mediante **Inteligencia Artificial** y visualización de datos de alto impacto.
 
 ---
@@ -27,21 +26,19 @@ Interfaz de usuario moderna y responsiva diseñada para empoderar al ciudadano p
 * **Framework Core:** React 18 con Hooks para una gestión de estado eficiente.
 * **Tipado:** TypeScript para garantizar un desarrollo robusto y escalable.
 * **Build Tool:** Vite (Optimización de carga y HMR ultra rápido).
-* **Estilos:** Bootstrap para un diseño limpio, moderno y 100% adaptable (Responsive).
-* **Gráficos:** Recharts / Chart.js para la representación de KPIs y el radar de comparación política.
+* **Estilos:** Bootstrap para un diseño limpio y 100% adaptable.
+* **Gráficos:** Recharts / Chart.js para la representación de KPIs y radar político.
 * **Comunicación:** Axios / Fetch API conectado al backend en **Java 21 / Spring Boot**.
 
 ---
 
 ## 📸 Capturas de Pantalla (Preview)
 
-Aquí puedes ver la interfaz en funcionamiento. Para que se vean tus imágenes, sube los archivos a tu carpeta `assets` y actualiza las rutas:
+Aquí puedes ver la interfaz en funcionamiento:
 
-| 🧪 Test de Afinidad | 📊 Resumenes | 🤖 Chatbot IA |
+| 🧪 Test de Afinidad | 📊 Resúmenes | 🤖 Chatbot IA |
 | :---: | :---: | :---: |
-| <img src="./src/assets/capturas/Captura1.png" width="300" alt="Test de Afinidad"> | 
-<img src="./src/assets/capturas/Captura2.png" width="300" alt="Resumenes"> | 
-<img src="./src/assets/capturas/Captura3.png" width="300" alt="Chatbot Electoral"> |
+| <img src="src/assets/captura/Captura1.png" width="300" alt="Test de Afinidad"> | <img src="src/assets/captura/Captura2.png" width="300" alt="Resúmenes"> | <img src="src/assets/captura/Captura3.png" width="300" alt="Chatbot Electoral"> |
 
 ---
 
@@ -49,41 +46,9 @@ Aquí puedes ver la interfaz en funcionamiento. Para que se vean tus imágenes, 
 
 ```text
 src/
- ├── 📂 assets/          # Recursos visuales (Imágenes, SVGs) y estilos globales.
- ├── 📂 components/      # Componentes modulares y reutilizables (Navbar, RadarChart).
+ ├── 📂 assets/          # Recursos visuales e imágenes de capturas.
+ ├── 📂 components/      # Componentes modulares (Navbar, RadarChart).
  ├── 📂 pages/           # Vistas principales (Chatbot, Encuesta, Comparativa).
  ├── 📂 services/        # Capa de servicios para consumo de API (api.ts).
  ├── 📂 types/           # Definición de interfaces y tipos de TypeScript.
  └── 📂 utils/           # Funciones de ayuda y lógica de formateo.
-
----
-## ⚙️ Configuración e Instalación
-Sigue estos pasos para levantar el entorno de desarrollo localmente:
-
-✅ Requisitos Previos
-Node.js (Versión 18 o superior)
-
-npm o yarn instalado
-
-1️⃣ Variables de Entorno
-Crea un archivo .env en la raíz de tu proyecto y configura la URL de tu API de Spring Boot:
-
-Fragmento de código
-VITE_API_URL=http://localhost:8080/api
-2️⃣ Comandos de Ejecución
-Abre una terminal en la carpeta del proyecto y ejecuta:
-
-Bash
-# Instalar todas las dependencias
-npm install
-
-# Iniciar el servidor de desarrollo
-npm run dev
-[!TIP]
-La aplicación estará disponible por defecto en: http://localhost:5173
-
-🤝 Feedback y Transparencia
-El proyecto incluye secciones dedicadas a la Transparencia, permitiendo a los usuarios reportar errores en la data electoral o sugerir mejoras técnicas. Creemos en la tecnología como herramienta de fiscalización ciudadana.
-
-[!IMPORTANT]
-Dependencia del Backend: Asegúrate de tener el repositorio vota-bien-pe-backend en ejecución para que el Test de Afinidad y el Chatbot puedan procesar los datos correctamente.
