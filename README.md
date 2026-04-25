@@ -51,7 +51,8 @@ src/
  ├── 📂 pages/           # Vistas principales (Chatbot, Encuesta, Comparativa).
  ├── 📂 services/        # Capa de servicios para consumo de API (api.ts).
  ├── 📂 types/           # Definición de interfaces y tipos de TypeScript.
- └── 📂 utils/           # Funciones de ayuda y lógica de formateo. `` `
+ └── 📂 utils/           # Funciones de ayuda y lógica de formateo.
+```
 
 ---
 
