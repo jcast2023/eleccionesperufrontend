@@ -55,47 +55,71 @@ src/
 
 ---
 
----
-
 ## ⚙️ Configuración e Instalación
 
 Sigue estos pasos para levantar el entorno de desarrollo localmente.
 
 ### ✅ Requisitos Previos
 
-- **Node.js** (versión 18 o superior)
-- **npm** o **yarn**
+Antes de iniciar, asegúrate de tener instalado lo siguiente:
+
+- 🟢 **Node.js** `v18` o superior  
+- 📦 **npm** o **yarn**  
+- 🌐 Navegador moderno (Chrome, Edge, Firefox)  
+- ☕ Backend de **Spring Boot** en ejecución
 
 ---
 
-### 1️⃣ Variables de Entorno
+## 📥 Instalación del Proyecto
+
+### 1️⃣ Clonar el Repositorio
+
+```bash
+git clone https://github.com/tu-usuario/votabienpe-frontend.git
+cd votabienpe-frontend
+```
+
+### 2️⃣ Instalar Dependencias
+
+```bash
+npm install
+```
+
+### 3️⃣ Variables de Entorno
 
 Crea un archivo `.env` en la raíz del proyecto y agrega la URL del backend:
 
 ```env
 VITE_API_URL=http://localhost:8080/api
+```
 
-###  2️⃣ Comandos de Ejecución
-Abre una terminal en la carpeta del proyecto y ejecuta:
+### 4️⃣ Iniciar el Servidor de Desarrollo
 
-Bash
-# Instalar todas las dependencias
-npm install
-
-# Iniciar el servidor de desarrollo
+```bash
 npm run dev
-[!TIP]
-La aplicación estará disponible por defecto en: http://localhost:5173
+```
 
-🤝 Feedback y Transparencia
-El proyecto incluye secciones dedicadas a la Transparencia, permitiendo a los usuarios reportar errores en la data electoral o sugerir mejoras técnicas. Creemos en la tecnología como herramienta de fiscalización ciudadana.
+> [!TIP]
+> La aplicación estará disponible por defecto en: http://localhost:5173
 
-[!IMPORTANT]
-Dependencia del Backend: Asegúrate de tener el repositorio vota-bien-pe-backend en ejecución para que el Test de Afinidad y el Chatbot puedan procesar los datos correctamente.
+---
 
-```md
+## 🤝 Feedback y Transparencia
+
+El proyecto incluye secciones dedicadas a la **Transparencia**, permitiendo a los usuarios reportar errores en la data electoral o sugerir mejoras técnicas. Creemos en la tecnología como herramienta de fiscalización ciudadana.
+
+> [!IMPORTANT]
+> **Dependencia del Backend:** Asegúrate de tener el repositorio `vota-bien-pe-backend` en ejecución para que el Test de Afinidad y el Chatbot puedan procesar los datos correctamente.
+
+---
+
 ## 👨‍💻 Autor
 
-Desarrollado por **Tu Nombre**  
+Desarrollado por **Julio Edson Castillo Ita**  
 Proyecto enfocado en democracia digital e inteligencia artificial aplicada al voto informado en Perú.
 
+---
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
