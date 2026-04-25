@@ -33,40 +33,39 @@ Interfaz de usuario moderna y responsiva diseñada para empoderar al ciudadano p
 
 ---
 
-## 📂 Estructura del Proyecto
-
-```text
+📂 Estructura del Proyecto
+Plaintext
 src/
  ├── 📂 assets/          # Recursos visuales (Imágenes, SVGs) y estilos globales.
- ├── 📂 components/      # Componentes modulares y reutilizables (Navbar, RadarChart, Modal).
- ├── 📂 pages/           # Vistas principales (Chatbot, Encuesta, Comparativa, Resumen).
- ├── 📂 services/        # Capa de servicios para consumo de API (`api.ts`).
+ ├── 📂 components/      # Componentes modulares y reutilizables (Navbar, RadarChart).
+ ├── 📂 pages/           # Vistas principales (Chatbot, Encuesta, Comparativa).
+ ├── 📂 services/        # Capa de servicios para consumo de API (api.ts).
  ├── 📂 types/           # Definición de interfaces y tipos de TypeScript.
  └── 📂 utils/           # Funciones de ayuda y lógica de formateo.
-
- ## ⚙️ Configuración e Instalación
-
+⚙️ Configuración e Instalación
 Sigue estos pasos para levantar el entorno de desarrollo localmente:
 
-### ✅ Requisitos Previos
-* **Node.js** (Versión 18 o superior)
-* **npm** o **yarn** instalado
+✅ Requisitos Previos
+Node.js (Versión 18 o superior)
 
----
+npm o yarn instalado
 
-### 1️⃣ Variables de Entorno
-Crea un archivo `.env` en la raíz de tu proyecto y configura la URL de tu API de Spring Boot:
+1️⃣ Variables de Entorno
+Crea un archivo .env en la raíz de tu proyecto y configura la URL de tu API de Spring Boot:
 
-```env
+Fragmento de código
 VITE_API_URL=http://localhost:8080/api
-2. Comandos de Ejecución
+2️⃣ Comandos de Ejecución
+Abre una terminal en la carpeta del proyecto y ejecuta:
+
 Bash
 # Instalar todas las dependencias
 npm install
 
 # Iniciar el servidor de desarrollo
 npm run dev
-La aplicación estará disponible en: http://localhost:5173
+[!TIP]
+La aplicación estará disponible por defecto en: http://localhost:5173
 
 🤝 Feedback y Transparencia
 El proyecto incluye secciones dedicadas a la Transparencia, permitiendo a los usuarios reportar errores en la data electoral o sugerir mejoras técnicas. Creemos en la tecnología como herramienta de fiscalización ciudadana.
