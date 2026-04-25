@@ -44,16 +44,20 @@ src/
  ├── 📂 types/           # Definición de interfaces y tipos de TypeScript.
  └── 📂 utils/           # Funciones de ayuda y lógica de formateo.
 
- ⚙️ Configuración e Instalación
-Requisitos Previos
-Node.js (Versión 18 o superior).
+ ## ⚙️ Configuración e Instalación
 
-npm o yarn.
+Sigue estos pasos para levantar el entorno de desarrollo localmente:
 
-1. Variables de Entorno
-Crea un archivo .env en la raíz del proyecto y configura la URL de tu API:
+### ✅ Requisitos Previos
+* **Node.js** (Versión 18 o superior)
+* **npm** o **yarn** instalado
 
-Fragmento de código
+---
+
+### 1️⃣ Variables de Entorno
+Crea un archivo `.env` en la raíz de tu proyecto y configura la URL de tu API de Spring Boot:
+
+```env
 VITE_API_URL=http://localhost:8080/api
 2. Comandos de Ejecución
 Bash
