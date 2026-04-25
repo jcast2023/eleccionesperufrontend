@@ -110,7 +110,7 @@ npm run dev
 El proyecto incluye secciones dedicadas a la **Transparencia**, permitiendo a los usuarios reportar errores en la data electoral o sugerir mejoras técnicas. Creemos en la tecnología como herramienta de fiscalización ciudadana.
 
 > [!IMPORTANT]
-> **Dependencia del Backend:** Asegúrate de tener el repositorio `eleccionesperu-backend` en ejecución para que el Test de Afinidad y el Chatbot puedan procesar los datos correctamente.
+> **Dependencia del Backend:** Asegúrate de tener el repositorio `eleccionesperubackend` en ejecución para que el Test de Afinidad y el Chatbot puedan procesar los datos correctamente.
 
 ---
 
