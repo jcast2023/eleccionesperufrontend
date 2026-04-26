@@ -167,3 +167,31 @@
   border-radius: 10px; /* Opcional: redondea un poco las esquinas del QR blanco */
   display: block;
 }
+.spinner{
+width:18px;
+height:18px;
+border:3px solid rgba(255,255,255,.4);
+border-top:3px solid #fff;
+border-radius:50%;
+display:inline-block;
+margin-right:10px;
+animation:girar .7s linear infinite;
+vertical-align:middle;
+}
+
+@keyframes girar{
+to{transform:rotate(360deg);}
+}
+
+.btn-enviar{
+transition:.3s;
+}
+
+.btn-enviar:disabled{
+opacity:.8;
+cursor:not-allowed;
+transform:scale(.98);
+}
+.Toastify__toast-container {
+  z-index: 999999 !important;
+}

@@ -1,172 +1,448 @@
-import React, { useState } from 'react';
-import './ContactForm.css';
+import React, { useState } from "react";
+import "./ContactForm.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ReportErrorProps {
   onClose: () => void;
 }
 
 const ReportErrorForm: React.FC<ReportErrorProps> = ({ onClose }) => {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    email: '',
-    relacion: '',
-    tipoReporte: '',
-    partido: '',
-    seccion: '',
-    descripcion: ''
-  });
+  const API_URL =
+    import.meta.env.VITE_API_URL ||
+    "http://localhost:8080/api";
 
-  // Centralización de la API con Vite
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
+  const [enviando, setEnviando] =
+    useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const [formData, setFormData] =
+    useState({
+      nombre: "",
+      email: "",
+      relacion: "",
+      tipoReporte: "",
+      partido: "",
+      seccion: "",
+      descripcion: ""
+    });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      // Usamos la variable de entorno para el endpoint de reportes
-      const response = await fetch(`${API_URL}/reportes`, {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json' 
-        },
-        body: JSON.stringify(formData)
-      });
-
-      if (response.ok) {
-        alert("¡Reporte enviado con éxito! Gracias por ayudarnos a mejorar.");
-        onClose();
-      } else {
-        alert("Hubo un error al enviar el reporte. Inténtalo de nuevo.");
-      }
-    } catch (error) {
-      console.error("Error al conectar con el servidor:", error);
-      alert("No se pudo conectar con el servidor. Verifica que el backend esté activo.");
-    }
-  };
+  const [errores, setErrores] =
+    useState({
+      email: "",
+      relacion: "",
+      tipoReporte: "",
+      descripcion: ""
+    });
 
   const partidos = [
-    "Alianza para el Progreso", "Fuerza Popular", "Renovación Popular", "Avanza País", 
-    "Juntos por el Perú", "Podemos Perú", "Somos Perú", "Partido Morado", "Perú Libre", 
-    "Partido Aprista Peruano", "Alianza Fuerza y Libertad", "Alianza Unidad Nacional", 
-    "Alianza Venceremos", "Ahora Nación", "Partido Cívico Obras", "Cooperación Popular", 
-    "Partido Demócrata Unido Perú", "Partido Demócrata Verde", "Perú Acción", 
-    "Integridad Democrática", "Buen Gobierno", "PRIN", "Trabajadores y Emprendedores", 
-    "Progresemos", "Patriótico del Perú", "Salvemos al Perú", "Sí Creo", "Perú Moderno", 
-    "Libertad Popular", "Perú Primero", "Un Camino Diferente", "Frente de la Esperanza", 
-    "Fe en el Perú", "País Para Todos", "Primero La Gente"
+    "Alianza para el Progreso",
+    "Fuerza Popular",
+    "Renovación Popular",
+    "Avanza País",
+    "Juntos por el Perú",
+    "Podemos Perú",
+    "Somos Perú",
+    "Partido Morado",
+    "Perú Libre"
   ];
 
+  const correoValido =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const limpiarFormulario = () => {
+    setFormData({
+      nombre: "",
+      email: "",
+      relacion: "",
+      tipoReporte: "",
+      partido: "",
+      seccion: "",
+      descripcion: ""
+    });
+
+    setErrores({
+      email: "",
+      relacion: "",
+      tipoReporte: "",
+      descripcion: ""
+    });
+  };
+
+  const validarFormulario = () => {
+    const nuevosErrores = {
+      email: "",
+      relacion: "",
+      tipoReporte: "",
+      descripcion: ""
+    };
+
+    let valido = true;
+
+    if (
+      formData.email.trim() === ""
+    ) {
+      nuevosErrores.email =
+        "Correo obligatorio";
+      valido = false;
+    } else if (
+      !correoValido.test(
+        formData.email
+      )
+    ) {
+      nuevosErrores.email =
+        "Correo inválido";
+      valido = false;
+    }
+
+    if (
+      formData.relacion === ""
+    ) {
+      nuevosErrores.relacion =
+        "Seleccione una opción";
+      valido = false;
+    }
+
+    if (
+      formData.tipoReporte === ""
+    ) {
+      nuevosErrores.tipoReporte =
+        "Seleccione una opción";
+      valido = false;
+    }
+
+    if (
+      formData.descripcion
+        .trim()
+        .length < 15
+    ) {
+      nuevosErrores.descripcion =
+        "Mínimo 15 caracteres";
+      valido = false;
+    }
+
+    setErrores(
+      nuevosErrores
+    );
+
+    return valido;
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement |
+      HTMLTextAreaElement |
+      HTMLSelectElement
+    >
+  ) => {
+    const { name, value } =
+      e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+
+    setErrores({
+      ...errores,
+      [name]: ""
+    });
+  };
+
+  const handleSubmit = async (
+  e: React.FormEvent
+) => {
+  e.preventDefault();
+
+  if (!validarFormulario()) {
+    toast.error(
+      "Complete correctamente los campos"
+    );
+    return;
+  }
+
+  setEnviando(true);
+
+  try {
+    // fuerza mostrar spinner mínimo 1 segundo
+    await new Promise(
+      (resolve) =>
+        setTimeout(resolve, 1000)
+    );
+
+    const response =
+      await fetch(
+        `${API_URL}/reportes`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+          body: JSON.stringify(
+            formData
+          )
+        }
+      );
+
+    if (response.ok) {
+
+      toast.success(
+        "Reporte enviado correctamente"
+      );
+
+      limpiarFormulario();
+
+      setTimeout(() => {
+        onClose();
+      }, 2500);
+
+    } else {
+      toast.error(
+        "Error al enviar reporte"
+      );
+    }
+
+  } catch {
+    toast.error(
+      "No se pudo conectar"
+    );
+  } finally {
+    setEnviando(false);
+  }
+};
+
+
   return (
-    <div className="contact-modal" onClick={onClose}>
-      <div className="contact-card" onClick={(e) => e.stopPropagation()}>
-        <button className="close-btn" onClick={onClose}>✕</button>
-        
-        <div className="contact-header">
-          <h2>Reportar error o sugerencia</h2>
-          <p>Si encuentras un error en la plataforma o deseas sugerir una corrección, puedes enviarlo aquí.</p>
-        </div>
+    <>
+      <div className="contact-modal">
+        <div
+          className="contact-card glass"
+          onClick={(e) =>
+            e.stopPropagation()
+          }
+        >
+          <button
+            type="button"
+            className="close-btn"
+            onClick={onClose}
+          >
+            ✕
+          </button>
 
-        <div className="card-body">
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Nombre (opcional)</label>
-              <input 
-                type="text" 
-                name="nombre" 
-                placeholder="Tu nombre" 
-                value={formData.nombre}
-                onChange={handleChange} 
-              />
-            </div>
+          <div className="contact-header">
+            <h2>
+              Reportar Error
+            </h2>
+            <p>
+              Ayúdanos a mejorar
+              la plataforma.
+            </p>
+          </div>
 
-            <div className="form-group">
-              <label>Correo electrónico (opcional, recomendado)</label>
-              <input 
-                type="email" 
-                name="email" 
-                placeholder="correo@ejemplo.com" 
-                value={formData.email}
-                onChange={handleChange} 
-              />
-            </div>
+          <div className="card-body">
+            <form
+              onSubmit={
+                handleSubmit
+              }
+            >
+              <div className="form-group">
+                <label>
+                  Nombre
+                </label>
+                <input
+                  type="text"
+                  name="nombre"
+                  value={
+                    formData.nombre
+                  }
+                  onChange={
+                    handleChange
+                  }
+                />
+              </div>
 
-            <div className="form-group">
-              <label>Relación con el reporte</label>
-              <select 
-                name="relacion" 
-                value={formData.relacion}
-                onChange={handleChange} 
-                required
+              <div className="form-group">
+                <label>
+                  Correo *
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={
+                    formData.email
+                  }
+                  onChange={
+                    handleChange
+                  }
+                />
+                {errores.email && (
+                  <small className="error">
+                    {
+                      errores.email
+                    }
+                  </small>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label>
+                  Relación *
+                </label>
+                <select
+                  name="relacion"
+                  value={
+                    formData.relacion
+                  }
+                  onChange={
+                    handleChange
+                  }
+                >
+                  <option value="">
+                    Seleccione
+                  </option>
+                  <option value="Usuario">
+                    Usuario
+                  </option>
+                  <option value="Representante">
+                    Representante
+                  </option>
+                  <option value="Investigador">
+                    Investigador
+                  </option>
+                  <option value="Otro">
+                    Otro
+                  </option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>
+                  Tipo *
+                </label>
+                <select
+                  name="tipoReporte"
+                  value={
+                    formData.tipoReporte
+                  }
+                  onChange={
+                    handleChange
+                  }
+                >
+                  <option value="">
+                    Seleccione
+                  </option>
+                  <option value="Error general">
+                    Error general
+                  </option>
+                  <option value="Chatbot">
+                    Chatbot
+                  </option>
+                  <option value="Resumen">
+                    Resumen
+                  </option>
+                  <option value="Otro">
+                    Otro
+                  </option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>
+                  Partido
+                </label>
+                <select
+                  name="partido"
+                  value={
+                    formData.partido
+                  }
+                  onChange={
+                    handleChange
+                  }
+                >
+                  <option value="">
+                    Seleccione
+                  </option>
+
+                  {partidos.map(
+                    (p) => (
+                      <option
+                        key={p}
+                        value={p}
+                      >
+                        {p}
+                      </option>
+                    )
+                  )}
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>
+                  Sección
+                </label>
+                <input
+                  type="text"
+                  name="seccion"
+                  value={
+                    formData.seccion
+                  }
+                  onChange={
+                    handleChange
+                  }
+                />
+              </div>
+
+              <div className="form-group">
+                <label>
+                  Descripción *
+                </label>
+                <textarea
+                  rows={4}
+                  name="descripcion"
+                  value={
+                    formData.descripcion
+                  }
+                  onChange={
+                    handleChange
+                  }
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="btn-enviar"
+                disabled={
+                  enviando
+                }
               >
-                <option value="" disabled>Selecciona una opción</option>
-                <option value="Usuario">Usuario</option>
-                <option value="Representante de partido">Representante de partido</option>
-                <option value="Investigador / periodista">Investigador / periodista</option>
-                <option value="Otro">Otro</option>
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label>Tipo de reporte</label>
-              <select 
-                name="tipoReporte" 
-                value={formData.tipoReporte}
-                onChange={handleChange} 
-                required
-              >
-                <option value="" disabled>Selecciona una opción</option>
-                <option value="Error general">Error general</option>
-                <option value="Respuesta del test incorrecta">Respuesta del test incorrecta</option>
-                <option value="Problema en resumen de plan de gobierno">Problema en resumen de plan de gobierno</option>
-                <option value="Problema en chatbot">Problema en chatbot</option>
-                <option value="Información incompleta">Información incompleta</option>
-                <option value="Otro">Otro</option>
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label>Partido relacionado (opcional)</label>
-              <select 
-                name="partido" 
-                value={formData.partido}
-                onChange={handleChange}
-              >
-                <option value="">Selecciona un partido (si aplica)</option>
-                {partidos.map(p => <option key={p} value={p}>{p}</option>)}
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label>Pregunta o sección relacionada (opcional)</label>
-              <input 
-                type="text" 
-                name="seccion" 
-                placeholder="Ej: Sección de economía"
-                value={formData.seccion}
-                onChange={handleChange} 
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Descripción del reporte *</label>
-              <textarea 
-                name="descripcion" 
-                placeholder="Si es posible, incluye contexto, referencias o citas del plan de gobierno." 
-                rows={4} 
-                required 
-                value={formData.descripcion}
-                onChange={handleChange} 
-              />
-            </div>
-
-            <button type="submit" className="btn-enviar">Enviar reporte</button>
-          </form>
+                {enviando ? (
+                  <>
+                    <span className="spinner"></span>
+                    Enviando...
+                  </>
+                ) : (
+                  "Enviar Reporte"
+                )}
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+
+      <ToastContainer
+  position="top-center"
+  autoClose={2200}
+  newestOnTop
+  closeOnClick
+  pauseOnHover
+  draggable
+  theme="colored"
+  style={{
+    zIndex: 999999
+  }}
+/>
+
+    </>
   );
 };
 
