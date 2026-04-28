@@ -8,6 +8,16 @@ Interfaz de usuario moderna y responsiva diseñada para empoderar al ciudadano p
 
 ---
 
+## 🌐 Producción
+
+| Servicio | URL |
+| :--- | :--- |
+| 🖥️ **Frontend** | https://elecciones-peru-eta.vercel.app |
+| ⚙️ **Backend** | https://eleccionesperubackend.onrender.com |
+| 🗄️ **Base de datos** | Railway (MySQL 8.0) |
+
+---
+
 ## 🚀 Funcionalidades Clave
 
 | Característica | Descripción y Detalle Técnico |
@@ -28,13 +38,11 @@ Interfaz de usuario moderna y responsiva diseñada para empoderar al ciudadano p
 * **Build Tool:** Vite (Optimización de carga y HMR ultra rápido).
 * **Estilos:** Bootstrap para un diseño limpio y 100% adaptable.
 * **Gráficos:** Recharts / Chart.js para la representación de KPIs y radar político.
-* **Comunicación:** Axios / Fetch API conectado al backend en **Java 21 / Spring Boot**.
+* **Comunicación:** Fetch API conectado al backend en **Java 21 / Spring Boot 3.3.5**.
 
 ---
 
 ## 📸 Capturas de Pantalla (Preview)
-
-Aquí puedes ver la interfaz en funcionamiento:
 
 | 🧪 Test de Afinidad | 📊 Resúmenes | 🤖 Chatbot IA |
 | :---: | :---: | :---: |
@@ -62,21 +70,15 @@ Sigue estos pasos para levantar el entorno de desarrollo localmente.
 
 ### ✅ Requisitos Previos
 
-Antes de iniciar, asegúrate de tener instalado lo siguiente:
-
-- 🟢 **Node.js** `v18` o superior  
-- 📦 **npm** o **yarn**  
-- 🌐 Navegador moderno (Chrome, Edge, Firefox)  
+- 🟢 **Node.js** `v18` o superior
+- 📦 **npm** o **yarn**
+- 🌐 Navegador moderno (Chrome, Edge, Firefox)
 - ☕ Backend de **Spring Boot** en ejecución
-
----
-
-## 📥 Instalación del Proyecto
 
 ### 1️⃣ Clonar el Repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/votabienpe-frontend.git
+git clone https://github.com/jcast2023/eleccionesperubackend.git
 cd votabienpe-frontend
 ```
 
@@ -88,10 +90,14 @@ npm install
 
 ### 3️⃣ Variables de Entorno
 
-Crea un archivo `.env` en la raíz del proyecto y agrega la URL del backend:
+Crea un archivo `.env` en la raíz del proyecto:
 
 ```env
+# Desarrollo local
 VITE_API_URL=http://localhost:8080/api
+
+# Producción
+# VITE_API_URL=https://eleccionesperubackend.onrender.com/api
 ```
 
 ### 4️⃣ Iniciar el Servidor de Desarrollo
@@ -107,17 +113,14 @@ npm run dev
 
 ## 🤝 Feedback y Transparencia
 
-El proyecto incluye secciones dedicadas a la **Transparencia**, permitiendo a los usuarios reportar errores en la data electoral o sugerir mejoras técnicas. Creemos en la tecnología como herramienta de fiscalización ciudadana.
+El proyecto incluye secciones dedicadas a la **Transparencia**, permitiendo a los usuarios reportar errores en la data electoral o sugerir mejoras técnicas.
 
 > [!IMPORTANT]
-> **Dependencia del Backend:** Asegúrate de tener el repositorio `eleccionesperubackend` en ejecución para que el Test de Afinidad y el Chatbot puedan procesar los datos correctamente.
+> **Dependencia del Backend:** Asegúrate de tener el repositorio `eleccionesperubackend` en ejecución o apuntar `VITE_API_URL` al backend en producción: `https://eleccionesperubackend.onrender.com/api`
 
 ---
 
 ## 👨‍💻 Autor
 
-Desarrollado por **Julio Edson Castillo Ita**  
+Desarrollado por **Julio Edson Castillo Ita**
 Proyecto enfocado en democracia digital e inteligencia artificial aplicada al voto informado en Perú.
-
----
-
