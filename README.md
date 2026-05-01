@@ -148,6 +148,3 @@ Proyecto enfocado en democracia digital e inteligencia artificial aplicada al vo
 
 ---
 
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
