@@ -81,6 +81,16 @@ Sigue estos pasos para levantar el entorno de desarrollo localmente.
 git clone https://github.com/jcast2023/eleccionesperubackend.git
 cd votabienpe-frontend
 ```
+```markdown
+## 🐳 Ejecución con Docker
+
+Si prefieres no instalar Node.js localmente, puedes levantar el frontend utilizando Docker. La imagen está optimizada mediante una construcción en etapas (multi-stage build) que utiliza **Nginx** para servir los archivos estáticos de forma eficiente.
+
+### Instrucciones:
+1. Desde la raíz del proyecto frontend, ejecuta:
+   
+```bash
+   docker-compose up -d
 
 ### 2️⃣ Instalar Dependencias
 
