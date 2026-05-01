@@ -75,22 +75,16 @@ Sigue estos pasos para levantar el entorno de desarrollo localmente.
 - 🌐 Navegador moderno (Chrome, Edge, Firefox)
 - ☕ Backend de **Spring Boot** en ejecución
 
+---
+
+## 📥 Instalación del Proyecto
+
 ### 1️⃣ Clonar el Repositorio
 
 ```bash
 git clone https://github.com/jcast2023/eleccionesperubackend.git
 cd votabienpe-frontend
 ```
-```markdown
-## 🐳 Ejecución con Docker
-
-Si prefieres no instalar Node.js localmente, puedes levantar el frontend utilizando Docker. La imagen está optimizada mediante una construcción en etapas (multi-stage build) que utiliza **Nginx** para servir los archivos estáticos de forma eficiente.
-
-### Instrucciones:
-1. Desde la raíz del proyecto frontend, ejecuta:
-   
-```bash
-   docker-compose up -d
 
 ### 2️⃣ Instalar Dependencias
 
@@ -121,6 +115,23 @@ npm run dev
 
 ---
 
+## 🐳 Ejecución con Docker
+
+Si prefieres no instalar Node.js localmente, puedes levantar el frontend utilizando Docker. La imagen está optimizada mediante una construcción en etapas (multi-stage build) que utiliza **Nginx** para servir los archivos estáticos de forma eficiente.
+
+### Instrucciones:
+
+Desde la raíz del proyecto frontend, ejecuta:
+
+```bash
+docker-compose up -d
+```
+
+> [!NOTE]
+> El contenedor expondrá el puerto **5173** para mantener consistencia con el servidor de desarrollo de Vite.
+
+---
+
 ## 🤝 Feedback y Transparencia
 
 El proyecto incluye secciones dedicadas a la **Transparencia**, permitiendo a los usuarios reportar errores en la data electoral o sugerir mejoras técnicas.
@@ -132,5 +143,11 @@ El proyecto incluye secciones dedicadas a la **Transparencia**, permitiendo a lo
 
 ## 👨‍💻 Autor
 
-Desarrollado por **Julio Edson Castillo Ita**
+Desarrollado por **Julio Edson Castillo Ita**  
 Proyecto enfocado en democracia digital e inteligencia artificial aplicada al voto informado en Perú.
+
+---
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
